@@ -1,52 +1,54 @@
-1. DEPENDENCIES INSTALLATION
+# CeraMIRScan: Mid-infrared OCT Scan Dataset for Ceramic Quality Assessment
 
-Requirements: Python >= 3.8
+This repository supports the research work **_“CeraMIRScan: Mid-infrared OCT Scan Dataset for Ceramic Quality Assessment”_**, providing all tools necessary to **reproduce and extend defect segmentation experiments** on ceramic components.
 
-To install all required packages, run:
+Our aim is to enable researchers and industry professionals to explore **Non-Destructive Testing (NDT)** using **Mid-Infrared Optical Coherence Tomography (MIR-OCT)** combined with **Deep Learning** for defect detection and segmentation.
+
+---
+
+## 1. Installation & Dependencies
+
+**Requirements**  
+- Python **≥ 3.8**
+
+Install required dependencies:
 
     pip install -r requirements.txt
 
-Contents of the `requirements.txt` file:
+## 2. Preparing the Dataset Structure
 
-    segmentation-models-pytorch
-    albumentations
-    opencv-python-headless==4.7.0.72
-    opencv-fixer==0.2.5
-    pytz
-    seaborn
-    wandb
-    PyMuPDF
-    scikit-image
+The original CeraMIRScan dataset is organized by volumes (each volume contains a full MIR-OCT scan).
+However, the training code in this repository expects the splits with volumes inside images/ and masks/.
 
-
-2. FOLDER STRUCTURE
-
-The expected dataset structure is as follows:
+- Download the volumetric MIR-OCT scans of ceramic parts with pixel-level defect annotations (link)
+- The expected dataset structure is as follows:
 
     data/
     └── BD_2D/
         ├── train/
         │   ├── images/
-        │   │   ├── volume1_0.png
-        │   │   ├── volume1_1.png
+        │   │   ├── A23652_SCAN1_S1/
+        │   │   ├── A23652_SCAN2_S1/
+        │   │   ├── ...  
         │   └── mask/
-        │       ├── volume1_0.png
-        │       ├── volume1_1.png
+        │   │   ├── A23652_SCAN1_S1/
+        │   │   ├── A23652_SCAN2_S1/
+        │   │   ├── ...  
         ├── val/
         │   ├── images/
+        │   │   ├── A23654_SCAN1_S1/
+        │   │   ├── Pilot-Demo_x-mode_images_2/  
         │   └── mask/
-        └── test/
-            ├── test_images/
-            └── test_mask/
+        │   │   ├── A23654_SCAN1_S1/
+        │   │   ├── Pilot-Demo_x-mode_images_2/
 
 Notes:
 - Each image must have a corresponding mask with the exact same filename.
 - Masks are binary (0 = background, 1 = defect).
-- `train/`, `val/`, and `test/` sets must be properly matched.
 
 
 
-3. TRAINING THE MODEL
+## 3. Training the model
 
 To train the model, run:
 
@@ -64,8 +66,7 @@ The trained model will be saved automatically in:
     /trains/n_train_day_month_year.pth
 
 
-
-4. MAKING PREDICTIONS
+4. Making predictions
 
 After training, you can generate predictions by running:
 
@@ -89,7 +90,7 @@ In addition, a CSV file with evaluation metrics for that prediction is automatic
 
 
 
-5. METRIC TRACKING
+5. Metric tracking
 
 The training and validation process uses [Weights & Biases (wandb)](https://wandb.ai/) to track loss, metrics, and training progress.
 
@@ -108,3 +109,4 @@ This CSV file contains per-epoch training and validation results, including loss
 The following plots are also generated and saved in the `/metrics/` folder:
 - Training and validation loss curves
 - Training and validation metric curves (Dice, Precision, Recall)
+
