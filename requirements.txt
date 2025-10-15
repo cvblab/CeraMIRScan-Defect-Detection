@@ -1,0 +1,15 @@
+segmentation-models-pytorch
+albumentations
+opencv-python-headless==4.7.0.72
+opencv-fixer==0.2.5
+pytz
+seaborn
+wandb
+PyMuPDF
+scikit-image
+
+
+#pip uninstall opencv-python opencv-python-headless opencv-fixer -y
+#pip install opencv-python-headless==4.7.0.72
+
+
