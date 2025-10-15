@@ -22,7 +22,7 @@ However, the training code in this repository expects the splits with volumes in
 
 - Download the volumetric MIR-OCT scans of ceramic parts with pixel-level defect annotations (link)
 - The expected dataset structure is as follows:
-
+```
 data/
 └── BD_2D/
     ├── train/
@@ -39,7 +39,7 @@ data/
     │   └── mask/
     │       ├── A23654_SCAN1_S1/
     │       ├── Pilot-Demo_x-mode_images_2/
-
+```
 Notes:
 - Each image must have a corresponding mask with the exact same filename.
 - Masks are binary (0 = background, 1 = defect).
