@@ -64,7 +64,7 @@ The trained model will be saved automatically in:
     /trains/n_train_day_month_year.pth
 
 
-4. Making predictions
+## 4. Making predictions
 
 After training, you can generate predictions by running:
 
@@ -88,7 +88,7 @@ In addition, a CSV file with evaluation metrics for that prediction is automatic
 
 
 
-5. Metric tracking
+## 5. Metric tracking
 
 The training and validation process uses [Weights & Biases (wandb)](https://wandb.ai/) to track loss, metrics, and training progress.
 
